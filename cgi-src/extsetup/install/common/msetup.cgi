@@ -1,0 +1,1 @@
+../cgi/msetup.cgi

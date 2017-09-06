@@ -1,0 +1,52 @@
+<UL style='padding:5px;'>
+
+<LI><b>동작 모드</b>
+<UL style='list-style-type:none; padding:0; margin-left:10px;'>
+        <LI>무선 익스텐더 모드(AP+Client) - 무선을 통한 무선 영역 확장 기능.
+        <LI>무선 Client모드 - 무선을 통한 유선네트워크 확장.
+        <LI>무선 AP모드 - 일반적인 AP기능.
+</UL>
+<br>
+<LI><b>무선 익스텐더 모드</b>
+<UL style='list-style-type:none; padding:0px; margin-left:10px;'>
+	<LI>1. 동작모드를 "<input type=radio name=mode value=1 checked>무선익스텐더(AP+Client)"로 선택합니다.
+	<LI>2. 우측 상단의 "<img name=apscan src='/images2/apscan.gif'> AP검색"을 클릭하여 무선네트워크를 검색합니다.
+	<LI>3. 검색이 완료된 후, 연결할 무선네트워크를 선택합니다. 
+	<LI>4. 연결할 AP이름/인증 및 암호화방식은 자동으로 설정됩니다.
+	<LI>5. 내 무선네트워크 이름에 대한 설정 정책
+		 <select name=wifi_method> 
+			<option value=1> 연결할 AP와 동일하게 설정
+			<option value=2> 연결할 AP+MAC주소로 설정
+			<option value=3> 수동 설정
+			</select>를 선택합니다.
+	<UL style='list-style-type:disc; padding:0; margin-left:20px;'>
+		<LI><span class=gray_text>WPS(EXT)버튼을 통한 연결 시에도  위의 정책에 따라 "내 무선 네트워크 이름"이 설정됩니다.</span>
+	</UL>
+	<LI>6. 연결될 AP의 네트워크 암호를 입력합니다.
+	<LI>7. 우측 하단의 <input class=navi_bt type=button name=apply value="적용">을 클릭합니다.
+	<LI>8. 연결상태를 확인합니다.
+</UL>
+<br>
+<LI><b>무선 Client 모드</b>
+<UL style='list-style-type:none; padding:0; margin-left:10px;'>
+	<LI>1. 동작모드를 "<input type=radio name=mode2 value=1 checked> 무선 Client"로 선택합니다.
+	<LI>2. 우측 상단의 "<img name=apscan src='/images2/apscan.gif'> AP검색"을 클릭하여 무선네트워크를 검색합니다.
+	<LI>3. 검색이 완료된 후, 연결할 무선네트워크를 선택합니다. 
+	<LI>4. 연결할 AP이름/인증 및 암호화방식은 자동으로 설정됩니다.
+	<LI>5. 연결될 AP의 네트워크 암호를 입력합니다.
+	<LI>6. 우측 하단의 <input type=button name=apply value="적용">을 클릭합니다.
+	<LI>7. 연결상태를 확인합니다.
+</UL>
+<br>
+<LI><b>AP 모드</b>
+<UL style='list-style-type:none; padding:0; margin-left:10px;'>
+	<LI>1. 동작모드를 "<input type=radio name=mode2 value=1 checked>무선AP"로 선택합니다.
+	<LI>2. 내 무선 네트워크 이름을 입력합니다.
+	<LI>3. 사용할 채널을 선택합니다.
+	<LI>4. 사용할 네트워크 암호를 입력합니다.
+	<LI>5. 우측 하단의 [적용] 버튼을 클릭합니다.
+</UL>
+
+<br>
+<LI><span class=gray_text>참고1)WPS(EXT)버튼을 이용한 연결 설정시, 기존의 익스텐더 설정 내용은 새로운 설정으로 업데이트됩니다.
+<LI><span class=gray_text>참고2)WPS(EXT)버튼을 이용한 연결 설정시, 무선익스텐더모드로 설정됩니다.

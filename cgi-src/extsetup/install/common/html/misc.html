@@ -1,0 +1,68 @@
+<!-- panel --> 
+<div id="left_panel" data-role="panel" data-display="overlay" data-position-fixed="true" data-history="false">
+  <!--div id="left_header"></div-->
+  <div id="menu" class="left_menu"></div>
+  <div id="left_footer"></div>
+</div>
+<!-- panel -->  
+<div id="right_panel" data-role="panel" data-display="overlay" data-position="right" data-position-fixed="true" data-history="false">
+  <div id="right_header"></div>
+  <div id="right_content" class="right_content"></div>
+</div>
+<!-- loading popup --> 
+<div id="loading" class="loading" data-role="popup" data-dismissible="false" data-overlay-theme="a"
+	data-theme="none" data-shadow="false" data-history="false"> <img src="/common/images/loading.gif">
+</div>
+<div id="intro_popup" class="intro_popup" data-role="popup" data-transition="pop" data-position-to="window" data-dismissible="false" 
+	data-theme="none" data-shadow="false" data-history="false"> <img src="/common/images/intro.png">
+</div>
+<!-- loading reboot popup --> 
+<div data-role="popup" class="stylepopup" id="loading_reboot" data-position-to="window" data-overlay-theme="b" data-theme="none" data-dismissible="false" data-history="false">
+	<div class="titlebar">
+		<span class="with_image_text"><p sid="REBOOT_MSG"></p><img sid="REBOOT_IMG" src="/common/images/loading.gif"></span>
+	</div>
+	<hr>
+	<div class="content_field rebootcontent">
+		<div style="float:left; margin-left:1em;">
+			<div class="rebootline">
+			<div class="rebootdesc" style="margin-right:1em;"><img src="/common/images/alert.png"></div>
+			<div class="rebootdesc">
+				<p sid="REBOOTDESC_STRING1"></p>
+				<p sid="REBOOTDESC_STRING2"></p>
+			</div>
+			</div>
+			<p>&nbsp;</p>
+			<div sid="REBOOT_VALUEFIELD">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- confirm popup --> 
+<div id="confirm_popup" class="stylepopup" data-role="popup" data-position-to="window" data-dismissible="false" data-overlay-theme="b"
+	data-theme="none" data-history="false">
+	
+	<div class="titlebar"><p sid="CONFIRM_TITLE_TEXT"></p></div>
+	<hr>
+	<div class="content_field">
+		<div style="float:left; margin-right: 1em;"><img src="/common/images/alert.png"></div>
+		<div style="float:left;"><p sid="CONFIRM_CONTENT_TEXT"></p></div>
+	</div>
+	<div class="button_field">
+		<div sid="CONFIRM_POSITIVE" class="confirm_yes"><input onClick='confirm_close(true);' sid="confirm__yes" type="button" data-role="none" value="확인"></div>
+		<div sid="CONFIRM_NEGATIVE" class="confirm_no"><input onClick='confirm_close(false);' sid="confirm_no" type="button" data-role="none" value="취소"></div>
+	</div>
+</div>
+<!-- alert popup --> 
+<div id="alert_popup" class="stylepopup" data-role="popup" data-position-to="window" data-dismissible="false" data-overlay-theme="b"
+	data-theme="none" data-history="false">
+	<div class="titlebar"><p sid="ALERT_TITLE_TEXT"></p></div>
+	<hr>
+	<div class="content_field">
+		<div style="float:left; margin-right: 1em;"><img src="/common/images/alert.png"></div>
+		<div style="float:left;"><p sid="ALERT_CONTENT_TEXT"></p></div>
+	</div>
+	<div class="button_field">
+		<div class="alert"><input onClick='alert_close();' sid="alert__yes" type="button" data-role="none" value="확인"></div>
+	</div>
+</div>
+
