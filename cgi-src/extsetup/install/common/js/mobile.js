@@ -65,7 +65,7 @@ var RightPanelEvent = (function()
         }
         function _confirmBeforeClose() {
                 confirmactname = "";
-                confirm(M_lang['S_POPUP_CLOSED_CONENT'], M_lang['S_POPUP_CLOSED_TITLE']);
+		events.confirm({ msg: M_lang['S_POPUP_CLOSED_CONENT'], title: M_lang['S_POPUP_CLOSED_TITLE']});
         }
         function _hide()        {
                 $("#right_panel_dismiss").hide();
@@ -605,6 +605,7 @@ function alert(msg, _title)
 		title = _title;
 	$('[sid="ALERT_TITLE_TEXT"]').text(title);
 	$('[sid="ALERT_CONTENT_TEXT"]').html(parsing_msg_to_code(msg));
+	$('[sid="alert__yes"]').val(M_lang["S_CONFIRM"]);
 	$('#alert_popup').popup('open');
 }
 
@@ -635,6 +636,8 @@ function confirm(msg, title, _rightpanelflag)
 	if(!title) $('[sid="CONFIRM_TITLE_TEXT"]').text(M_lang['S_POPUP_TITLE_NOTI']);
 	else $('[sid="CONFIRM_TITLE_TEXT"]').text(title);
 	$('[sid="CONFIRM_CONTENT_TEXT"]').html(parsing_msg_to_code(msg));
+	$('[sid="confirm__yes"]').val(M_lang["S_CONFIRM"]);
+	$('[sid="confirm_no"]').val(M_lang["S_CANCEL"]);
 	$('#confirm_popup').popup('open');
 }
 
@@ -642,6 +645,7 @@ function confirm_close(flag)
 {
 	$("#confirm_popup").popup("close");
 	
+	events.emit("confirm", flag );
 	if(window.confirm_result_local)
 		confirm_result_local(flag);
 	
@@ -713,47 +717,49 @@ function HighlightObject()
 }
 
 var events = (function() {
-        var eventsList = {};
-        function _on( eventName, callbackFunc ) {
-                eventsList[ eventName ] = eventsList[ eventName ] || [];
-                eventsList[ eventName ].push( callbackFunc );
-                return this;
-        }
-        function _off( eventName, callbackFunc ) {
-                var eventList = eventsList[ eventName ];
-                if( !eventList )
-                        return;
-                if( !callbackFunc )
-                        eventList.length =  0;
-                for( var i = 0; i < eventList.length; ++i ) {
-                        if( eventList[i] === callbackFunc ) {
-                                eventList.splice(i, 1);
-                                break;
-                        }
-                }
-                return this;
-        }
-        function _emit( eventName, data ) {
-                if( !eventsList[eventName])
-                        return;
-                eventsList[eventName].forEach( function( callbackFunc, index ) {
-                        callbackFunc( data );
-                });
-                return this;
-        }
-        function _confirm( object ) {
-                if( !object.msg || !object.runFunc )
-                        return;
-                eventsList[ "confirm" ] = [];
-                _on( "confirm", object.runFunc );
-                confirm( object.msg, object.title, object.panelFlag );
-                return this;
-        }
-        return {
-                on : _on,
-                off : _off,
-                emit : _emit,
-                confirm : _confirm
-        }
+	var eventsList = {};
+	function _on( eventName, callbackFunc ) {
+		eventsList[ eventName ] = eventsList[ eventName ] || [];
+		if(callbackFunc)
+			eventsList[ eventName ].push( callbackFunc );
+		return this;
+	}
+	function _off( eventName, callbackFunc ) {
+		var eventList = eventsList[ eventName ];
+		if( !eventList )
+			return;
+		if( !callbackFunc )
+			eventList.length =  0;
+		for( var i = 0; i < eventList.length; ++i ) {
+			if( eventList[i] === callbackFunc ) {
+				eventList.splice(i, 1);
+				break;
+			}
+		}
+		return this;
+	}
+	function _emit( eventName, data ) {
+		if( !eventsList[eventName]) 
+			return;
+		var tmp_array = [], length = eventsList[eventName].length, i;
+		for( i = 0; i < length; ++i )
+			tmp_array.push( eventsList[eventName][i] );
+		for( i = 0; i < length; ++i )
+			tmp_array[i]( data );
+		return this;
+	}
+	function _confirm( object ) {
+		if( !object.msg )
+			return;
+		eventsList[ "confirm" ] = [];
+		_on( "confirm", object.runFunc );
+		confirm( object.msg, object.title, object.panelFlag );
+		return this;
+	}
+	return {
+		on : _on,
+		off : _off,
+		emit : _emit,
+		confirm : _confirm
+	}
 })();
-

@@ -7,8 +7,6 @@ var regExp_hex = /[0-9a-fA-F]{64}/
 var regExp_admin = /^[0-9a-zA-Z]*$/g
 
 var current_mode = null;
-var confirm_mode = null;
-var confirm_data = null;
 var data_local = null;
 var smode = null;
 var rmode = null;
@@ -645,7 +643,7 @@ function basic_control_event_add(ruletype)
 		if($('[sid=\"L_CCHECK_2G\"] [sid=\"L_CCHECK_TEXT\"]').text() == M_lang['S_CCHECK_SUCCESS_STRING'])	return;
 		if(config_data.msetup.usedualext == '1' && 
 			$('[sid=\"L_CCHECK_5G\"] [sid=\"L_CCHECK_TEXT\"]').text() == M_lang['S_CCHECK_WAITING_STRING']){
-				alert('5GHz ' + M_lang['S_CCHECK_OTHERCHECK_STRING']);
+				alert(M_lang['S_CCHECK_OTHERCHECK_STRING1'] + '5GHz' + M_lang['S_CCHECK_OTHERCHECK_STRING2']);
 				return;
 		}
 		if(!wlsetup_validate('2g'))	return;
@@ -670,7 +668,7 @@ function basic_control_event_add(ruletype)
 		if($('[sid=\"L_CCHECK_5G\"] [sid=\"L_CCHECK_TEXT\"]').text() == M_lang['S_CCHECK_SUCCESS_STRING'])	return;
 		if(config_data.msetup.usedualext == '1' && 
 			$('[sid=\"L_CCHECK_2G\"] [sid=\"L_CCHECK_TEXT\"]').text() == M_lang['S_CCHECK_WAITING_STRING']){
-				alert('2.4GHz ' + M_lang['S_CCHECK_OTHERCHECK_STRING']);
+				alert(M_lang['S_CCHECK_OTHERCHECK_STRING1'] + '2.4GHz' + M_lang['S_CCHECK_OTHERCHECK_STRING2']);
 				return;
 		}
 		if(!wlsetup_validate('5g'))	return;
@@ -814,19 +812,6 @@ function reboot_submit(service_name, localdata)
 	}
 	$('#loading').popup('open');
 	msetup_submit(service_name, localdata, false);
-}
-
-function confirm_result_local(flag)
-{
-	if(!confirm_mode)	return;
-	else {
-		if(flag){
-			if(confirm_mode == 'msetup'){
-				reboot_submit('msetup',confirm_data, false);
-			}
-		}
-	}
-	confirm_data = null;	confirm_mode = null;
 }
 
 function result_config(result)
@@ -1208,8 +1193,13 @@ add_listener_local_func['msetup'] = function()
 submit_local_func['msetup'] = function(localdata)
 {
 	if(!msetup_validate())	return;
-	confirm_mode = 'msetup';	confirm_data = localdata;
-	confirm(M_lang['S_REBOOT_ALERT']);
+	events.confirm({ 
+		msg: M_lang['S_REBOOT_ALERT'],
+		runFunc: function( flag ) {
+			if(flag)
+				reboot_submit('msetup',localdata, false);
+		}
+	});
 }
 
 //local functions end

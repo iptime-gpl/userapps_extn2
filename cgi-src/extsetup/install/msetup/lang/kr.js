@@ -68,7 +68,8 @@ var S_lang = {
         "S_REBOOT_SYSTEMIP_STRING" : "Extender IP 주소",
         "S_REBOOT_GWL_STRING" : "WiFi 이름",
 
-        "S_CCHECK_OTHERCHECK_STRING" : "연결 확인 중 입니다.\n완료 후 다시 시도해 주십시오.",
+        "S_CCHECK_OTHERCHECK_STRING1" : "",
+        "S_CCHECK_OTHERCHECK_STRING2" : " 연결 확인 중 입니다.\n완료 후 다시 시도해 주십시오.",
         "S_CCHECK_SUCCESS_STRING" : "정상적으로 연결 가능한 네트워크 입니다.",
         "S_CCHECK_FAILED_STRING" : "입력된 정보로 네트워크에 연결할 수 없습니다.",
         "S_CCHECK_BADPASS_STRING" : "네트워크 암호가 잘못 입력되었습니다.",
